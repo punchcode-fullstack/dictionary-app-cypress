@@ -11,12 +11,22 @@ window.addEventListener("DOMContentLoaded", () => {
     fetch(url)
       .then((response) => response.json())
       .then((definitions) => {
-        let html = "<ul><li>";
-        for (let definition of definitions) {
-          const { shortdef } = definition;
-          html += shortdef.join("</li><li>");
+          console.log(definitions)
+          const gotDefinitions = definitions[0]?.shortdef
+          if(gotDefinitions){
+            let html = "<ul><li>";
+            for (let definition of definitions) {
+              const { shortdef } = definition;
+              html += shortdef.join("</li><li>");
+            }
+            html += "</li></ul>";
+            results.innerHTML = html;
+            return
         }
-        html += "</li></ul>";
+        // got synonyms
+        let html = '<div class="warning">No definition found. Similar words:</div><div class="word">'
+        html += definitions.join('</div><div class="word">')
+        html += '</div>'
         results.innerHTML = html;
       });
   });
