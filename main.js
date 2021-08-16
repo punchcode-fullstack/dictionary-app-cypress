@@ -11,7 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
     fetch(url)
       .then((response) => response.json())
       .then((definitions) => {
-          console.log(definitions)
           const gotDefinitions = definitions[0]?.shortdef
           if(gotDefinitions){
             let html = "<ul><li>";
@@ -28,6 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
         html += definitions.join('</div><div class="word">')
         html += '</div>'
         results.innerHTML = html;
+        Array.from(document.querySelectorAll('.word')).forEach(el => el.addEventListener('click', () => {
+            form.querySelector("#search-term").value = el.innerHTML;
+            form.querySelector('input[type=submit]').click()
+        }))
       });
   });
 });

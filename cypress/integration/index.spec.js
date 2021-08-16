@@ -41,5 +41,5 @@ describe("Dictionary App", () => {
     cy.contains(expected[0]);
     cy.contains(expected[1]);
   });
-  it("looks up a synonym if clicked on");
+//   it("looks up a synonym if clicked on");
 });
